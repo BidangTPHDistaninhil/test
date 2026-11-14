@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <meta name="description" content="Telusuri, saring, perbarui, dan arsipkan data LTT.">
+  <title>Data LTT · SIMON-LTT INHIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="data" class="app-body">
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-card">
+      <div class="boot-spinner" aria-hidden="true"></div>
+      <h2>Menyiapkan data LTT</h2>
+      <p>Memuat indeks dan filter pencarian…</p>
+    </div>
+  </div>
+
+  <main id="page-root" class="page" hidden>
+    <div class="filter-bar">
+      <div class="form-field" style="grid-column:span 2">
+        <label for="data-q">Pencarian</label>
+        <div class="input-with-icon">
+          <span class="input-icon" aria-hidden="true"></span>
+          <input type="search" id="data-q" placeholder="Kecamatan, desa, poktan, pelapor…">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="data-tahun">Tahun</label>
+        <select id="data-tahun"></select>
+      </div>
+      <div class="form-field">
+        <label for="data-bulan">Bulan</label>
+        <select id="data-bulan"></select>
+      </div>
+      <div class="form-field" id="data-kec-wrap">
+        <label for="data-kecamatan">Kecamatan</label>
+        <select id="data-kecamatan"></select>
+      </div>
+      <div class="form-field">
+        <label for="data-jenis">Jenis LTT</label>
+        <select id="data-jenis"></select>
+      </div>
+      <div class="form-field">
+        <label for="data-status">Status</label>
+        <select id="data-status"></select>
+      </div>
+      <div class="form-field">
+        <label for="data-sort">Urutkan</label>
+        <select id="data-sort">
+          <option value="tanggal|desc">Tanggal terbaru</option>
+          <option value="tanggal|asc">Tanggal terlama</option>
+          <option value="kecamatan|asc">Kecamatan A–Z</option>
+          <option value="ltt|desc">LTT terbesar</option>
+          <option value="ltt|asc">LTT terkecil</option>
+          <option value="dibuat|desc">Input terbaru</option>
+          <option value="diubah|desc">Perubahan terbaru</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button type="button" class="btn btn-primary" id="data-apply">Terapkan</button>
+        <button type="button" class="btn btn-ghost" id="data-reset">Reset</button>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <div class="section-title" id="data-heading">Data LTT</div>
+        <p class="section-sub" id="data-sub">Memuat data…</p>
+      </div>
+      <div class="section-actions">
+        <button type="button" class="btn btn-outline btn-sm" id="data-export">Ekspor CSV</button>
+        <a class="btn btn-primary btn-sm" href="input.html" id="data-add">Input Baru</a>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="table-toolbar">
+        <div class="table-toolbar-left">
+          <div class="kpi-mini" id="data-totals"></div>
+        </div>
+        <div class="table-toolbar-right">
+          <label class="muted" for="data-pagesize">Baris</label>
+          <select id="data-pagesize" style="min-height:34px;padding:4px 8px;border-radius:8px;border:1px solid var(--line-strong);background:#fff">
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+          <button type="button" class="btn btn-ghost btn-sm" id="data-reload">Muat ulang</button>
+        </div>
+      </div>
+      <div class="table-wrap flush" id="data-table"></div>
+      <div class="pagination" id="data-pagination"></div>
+    </section>
+  </main>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/page-common.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/data.js"></script>
+</body>
+</html>

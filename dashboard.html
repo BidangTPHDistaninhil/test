@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <meta name="description" content="Dashboard monitoring Luas Tambah Tanam Kabupaten Indragiri Hilir.">
+  <title>Dashboard · SIMON-LTT INHIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="dashboard" class="app-body">
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-card">
+      <div class="boot-spinner" aria-hidden="true"></div>
+      <h2>Menyiapkan dashboard</h2>
+      <p>Memvalidasi sesi dan memuat ringkasan LTT…</p>
+    </div>
+  </div>
+
+  <main id="page-root" class="page" hidden>
+    <div class="dashboard-hero">
+      <div>
+        <span class="eyebrow">Ringkasan Monitoring</span>
+        <h2 id="dash-title">Luas Tambah Tanam</h2>
+        <p id="dash-subtitle">Ringkasan periode terpilih dari data aktif yang tercatat.</p>
+        <div class="timestamp" id="dash-generated"></div>
+      </div>
+      <div class="filter-bar" style="margin:0;padding:12px 14px">
+        <div class="form-field">
+          <label for="dash-bulan">Bulan</label>
+          <select id="dash-bulan"></select>
+        </div>
+        <div class="form-field">
+          <label for="dash-tahun">Tahun</label>
+          <select id="dash-tahun"></select>
+        </div>
+        <div class="form-field" id="dash-kec-wrap">
+          <label for="dash-kecamatan">Kecamatan</label>
+          <select id="dash-kecamatan"></select>
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="btn btn-primary" id="dash-refresh">
+            Tampilkan
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="dash-body">
+      <div class="card"><div class="card-body"><div class="skeleton-line" style="width:100%"></div></div></div>
+    </div>
+  </main>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/page-common.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

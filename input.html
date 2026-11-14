@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <meta name="description" content="Input data Luas Tambah Tanam, olah lahan, dan panen.">
+  <title>Input LTT · SIMON-LTT INHIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="input" class="app-body">
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-card">
+      <div class="boot-spinner" aria-hidden="true"></div>
+      <h2>Menyiapkan formulir input</h2>
+      <p>Memuat master wilayah dan aturan input…</p>
+    </div>
+  </div>
+
+  <main id="page-root" class="page" hidden>
+    <div id="input-alert"></div>
+
+    <div class="input-layout">
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Formulir Input LTT</div>
+            <div class="card-sub">Satu baris mewakili satu catatan desa/kelurahan dan jenis LTT.</div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn btn-outline btn-sm" id="add-row">
+              Tambah Baris
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="input-tanggal">Tanggal <span class="req">*</span></label>
+              <input type="date" id="input-tanggal">
+              <small class="field-hint" id="tanggal-hint">Tanggal pencatatan LTT.</small>
+            </div>
+            <div class="form-field" id="kecamatan-field">
+              <label for="input-kecamatan">Kecamatan <span class="req">*</span></label>
+              <select id="input-kecamatan"></select>
+              <small class="field-hint" id="kecamatan-hint">Pilih kecamatan lokasi lahan.</small>
+            </div>
+          </div>
+
+          <div class="input-rows mt-3" id="input-rows"></div>
+
+          <div class="input-summary">
+            <div>
+              <strong id="summary-total">0,00 Ha</strong>
+              <span id="summary-detail">0 baris siap disimpan</span>
+            </div>
+            <div class="kpi-mini">
+              <div class="kpi-mini-item"><span>Olah lahan</span><strong id="summary-olah">0,00 Ha</strong></div>
+              <div class="kpi-mini-item"><span>Panen</span><strong id="summary-panen">0,00 Ha</strong></div>
+            </div>
+          </div>
+
+          <div class="row-between mt-3">
+            <span class="field-hint">Kolom bertanda <span class="req">*</span> wajib diisi. Desimal boleh memakai koma atau titik.</span>
+            <div class="section-actions">
+              <button type="button" class="btn btn-ghost" id="reset-form">Kosongkan</button>
+              <button type="button" class="btn btn-primary" id="submit-form">Simpan Data LTT</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="stack">
+        <section class="card input-meta-card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Aturan Input</div>
+              <div class="card-sub">Berlaku sesuai peran akun Anda.</div>
+            </div>
+          </div>
+          <div class="card-body" id="rules-body"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Ringkasan Cepat</div>
+              <div class="card-sub">Total baris yang sedang diisi.</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <dl class="info-list">
+              <div class="info-row"><dt>Jumlah baris</dt><dd id="info-rows">0</dd></div>
+              <div class="info-row"><dt>Total LTT</dt><dd id="info-ltt">0,00 Ha</dd></div>
+              <div class="info-row"><dt>Pelapor</dt><dd id="info-pelapor">—</dd></div>
+              <div class="info-row"><dt>Lingkup</dt><dd id="info-scope">—</dd></div>
+            </dl>
+            <p class="field-hint mt-2">
+              Duplikat diperbolehkan selama berbeda Mode Tanam atau Metode. Kecamatan
+              Petugas Kecamatan selalu diambil dari akun, bukan dari browser.
+            </p>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/page-common.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/input.js"></script>
+</body>
+</html>

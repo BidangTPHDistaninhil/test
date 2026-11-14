@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <meta name="description" content="Jejak input, perubahan, penghapusan, dan aktivitas login.">
+  <title>Log Aktivitas · SIMON-LTT INHIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="log" class="app-body">
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-card">
+      <div class="boot-spinner" aria-hidden="true"></div>
+      <h2>Menyiapkan log aktivitas</h2>
+      <p>Memuat jejak input, perubahan, dan login…</p>
+    </div>
+  </div>
+
+  <main id="page-root" class="page" hidden>
+    <div class="filter-bar">
+      <div class="form-field" style="grid-column:span 2">
+        <label for="log-q">Pencarian</label>
+        <div class="input-with-icon">
+          <span class="input-icon" aria-hidden="true"></span>
+          <input type="search" id="log-q" placeholder="Deskripsi, referensi, modul, pengguna…">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="log-tahun">Tahun</label>
+        <select id="log-tahun"></select>
+      </div>
+      <div class="form-field">
+        <label for="log-aksi">Jenis aksi</label>
+        <select id="log-aksi"></select>
+      </div>
+      <div class="form-field">
+        <label for="log-username">Username</label>
+        <input type="text" id="log-username" placeholder="contoh: petugas.tembilahan">
+      </div>
+      <div class="filter-actions">
+        <button type="button" class="btn btn-primary" id="log-apply">Terapkan</button>
+        <button type="button" class="btn btn-ghost" id="log-reset">Reset</button>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <div class="section-title">Log Aktivitas</div>
+        <p class="section-sub" id="log-sub">Memuat log…</p>
+      </div>
+      <div class="section-actions">
+        <button type="button" class="btn btn-outline btn-sm" id="log-refresh">Muat ulang</button>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="table-toolbar">
+        <div class="table-toolbar-left">
+          <div class="kpi-mini" id="log-count"></div>
+        </div>
+        <div class="table-toolbar-right">
+          <span class="muted">Log disimpan sesuai kebijakan retensi 24 bulan.</span>
+          <label class="muted" for="log-pagesize">Baris</label>
+          <select id="log-pagesize" style="min-height:34px;padding:4px 8px;border-radius:8px;border:1px solid var(--line-strong);background:#fff">
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap flush" id="log-table"></div>
+      <div class="pagination" id="log-pagination"></div>
+    </section>
+  </main>
+
+  <div class="modal" id="log-detail-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-log></div>
+    <div class="modal-dialog modal-lg" role="dialog" aria-modal="true" aria-labelledby="log-detail-title">
+      <div class="modal-head">
+        <div><span class="eyebrow">Jejak Aktivitas</span>
+          <h3 id="log-detail-title">Detail Log</h3></div>
+        <button type="button" class="icon-btn" data-close-log aria-label="Tutup"></button>
+      </div>
+      <div id="log-detail-body"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary" data-close-log>Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/page-common.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/log.js"></script>
+</body>
+</html>

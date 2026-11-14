@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <meta name="description" content="SIMON-LTT INHIL — Sistem Informasi Monitoring Luas Tambah Tanam Dinas Pertanian Kabupaten Indragiri Hilir.">
+  <title>Masuk · SIMON-LTT INHIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="login" class="login-body">
+  <div class="login-page">
+    <div class="login-atmosphere" aria-hidden="true">
+      <div class="rice-terraces"></div>
+      <div class="login-glow login-glow-a"></div>
+      <div class="login-glow login-glow-b"></div>
+    </div>
+
+    <header class="login-topbar">
+      <div class="login-brand">
+        <img class="brand-logo" data-logo="true" width="46" height="46"
+             src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo_kabupaten_indragiri_hilir.jpg"
+             alt="Logo Kabupaten Indragiri Hilir">
+        <div>
+          <strong>SIMON-LTT <span>INHIL</span></strong>
+          <small>Dinas Pertanian Kabupaten Indragiri Hilir</small>
+        </div>
+      </div>
+      <div class="login-audio">
+        <span class="audio-hint" id="login-audio-status">Musik latar</span>
+        <button type="button" class="icon-btn audio-btn" id="login-audio-toggle" aria-label="Musik latar"></button>
+      </div>
+    </header>
+
+    <main class="login-main">
+      <section class="login-hero" aria-labelledby="hero-title">
+        <span class="hero-badge">
+          <span class="badge-dot"></span>
+          Pemerintah Kabupaten Indragiri Hilir
+        </span>
+        <h1 id="hero-title">Monitoring <em>Luas Tambah Tanam</em> yang presisi untuk pertanian pesisir.</h1>
+        <p class="hero-lead">
+          Satu pintu data LTT, olah lahan, dan panen dari seluruh kecamatan —
+          terverifikasi per peran, siap dianalisis, dan siap dilaporkan.
+        </p>
+
+        <ul class="hero-points">
+          <li>
+            <span class="point-icon">01</span>
+            <div><strong>Empat peran, satu kendali</strong>
+              <p>Kadis dan Kabid memantau; Petugas Kabupaten dan Kecamatan mencatat sesuai kewenangan.</p></div>
+          </li>
+          <li>
+            <span class="point-icon">02</span>
+            <div><strong>20 kecamatan, 10 jenis LTT</strong>
+              <p>Data desa/kelurahan, kelompok tani, mode tanam, dan metode tercatat rapi.</p></div>
+          </li>
+          <li>
+            <span class="point-icon">03</span>
+            <div><strong>Jejak audit yang utuh</strong>
+              <p>Setiap input, perubahan, dan penghapusan tercatat dengan sesi yang divalidasi server.</p></div>
+          </li>
+        </ul>
+
+        <div class="hero-note">
+          <span class="hero-note-icon" aria-hidden="true">〰</span>
+          <p>Lahan basah, data kuat. Dibangun untuk kebutuhan nyata Dinas Pertanian Inhil.</p>
+        </div>
+      </section>
+
+      <section class="login-panel" aria-labelledby="login-title">
+        <div class="login-card" id="login-card">
+          <div class="login-card-head">
+            <span class="eyebrow">Akses Terbatas</span>
+            <h2 id="login-title">Masuk ke SIMON-LTT</h2>
+            <p>Gunakan akun yang diberikan Petugas LTT Kabupaten.</p>
+          </div>
+
+          <div class="alert alert-info" id="login-notice" hidden></div>
+
+          <form id="login-form" novalidate>
+            <div class="form-field">
+              <label for="login-username">Username</label>
+              <div class="input-with-icon">
+                <span class="input-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+                </span>
+                <input type="text" id="login-username" name="username" autocomplete="username"
+                       placeholder="contoh: petugas.tembilahan" required autofocus>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="login-password">Password</label>
+              <div class="input-with-icon has-action">
+                <span class="input-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                </span>
+                <input type="password" id="login-password" name="password"
+                       autocomplete="current-password" placeholder="Masukkan password" required>
+                <button type="button" class="input-action" id="toggle-password" aria-label="Tampilkan password" aria-pressed="false">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <p class="form-error" id="login-error" role="alert" hidden></p>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-submit">
+              <span>Masuk</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </button>
+          </form>
+
+          <div class="login-divider"><span>Keamanan sesi</span></div>
+
+          <ul class="login-security">
+            <li><span>✓</span> Sesi kedaluwarsa otomatis setelah 8 jam atau 2 jam tidak aktif.</li>
+            <li><span>✓</span> Akun terkunci sementara setelah 5 kali percobaan gagal.</li>
+            <li><span>✓</span> Password tidak pernah dikirim ke browser dalam bentuk hash.</li>
+          </ul>
+
+          <p class="login-help">
+            Lupa password? Hubungi <strong>Petugas LTT Kabupaten</strong> untuk reset akun.
+          </p>
+        </div>
+
+        <p class="login-copyright">
+          &copy; <span id="copyright-year">2026</span> Dinas Pertanian Kabupaten Indragiri Hilir.
+          <span>SIMON-LTT INHIL v2.0.0</span>
+        </p>
+      </section>
+    </main>
+
+    <footer class="login-footer">
+      <span>Sistem Informasi Monitoring Luas Tambah Tanam</span>
+      <span class="footer-sep"></span>
+      <span>Kabupaten Indragiri Hilir · Riau</span>
+    </footer>
+  </div>
+
+  <div class="welcome-overlay" id="welcome-overlay" hidden aria-live="polite">
+    <div class="welcome-card">
+      <div class="welcome-ring">
+        <img class="brand-logo" data-logo="true" width="72" height="72"
+             src="https://upload.wikimedia.org/wikipedia/commons/a/a3/Logo_kabupaten_indragiri_hilir.jpg"
+             alt="Logo Kabupaten Indragiri Hilir">
+      </div>
+      <span class="eyebrow">Selamat datang</span>
+      <h2 id="welcome-name">Pengguna</h2>
+      <p id="welcome-role">Petugas LTT</p>
+      <div class="welcome-progress"><span id="welcome-progress-bar"></span></div>
+      <button type="button" class="btn btn-ghost btn-sm" id="welcome-skip">Lanjut sekarang</button>
+    </div>
+  </div>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/login.js"></script>
+</body>
+</html>

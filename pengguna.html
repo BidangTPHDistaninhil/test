@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b2a">
+  <meta name="description" content="Kelola akun Petugas LTT Kecamatan dan status aksesnya.">
+  <title>Manajemen Pengguna · SIMON-LTT INHIL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body data-page="pengguna" class="app-body">
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-card">
+      <div class="boot-spinner" aria-hidden="true"></div>
+      <h2>Menyiapkan manajemen pengguna</h2>
+      <p>Memuat akun dan hak akses…</p>
+    </div>
+  </div>
+
+  <main id="page-root" class="page" hidden>
+    <div class="section-head">
+      <div>
+        <div class="section-title">Akun Pengguna</div>
+        <p class="section-sub" id="pengguna-sub">Memuat ringkasan akun…</p>
+      </div>
+      <div class="section-actions">
+        <button type="button" class="btn btn-outline btn-sm" id="pengguna-refresh">Muat ulang</button>
+        <button type="button" class="btn btn-primary btn-sm" id="pengguna-create">Tambah Akun Kecamatan</button>
+      </div>
+    </div>
+
+    <div class="stat-grid" id="pengguna-summary"></div>
+
+    <div class="filter-bar">
+      <div class="form-field" style="grid-column:span 2">
+        <label for="pengguna-q">Pencarian</label>
+        <div class="input-with-icon">
+          <span class="input-icon" aria-hidden="true"></span>
+          <input type="search" id="pengguna-q" placeholder="Nama, username, atau kecamatan…">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="pengguna-role">Peran</label>
+        <select id="pengguna-role"></select>
+      </div>
+      <div class="form-field">
+        <label for="pengguna-status">Status</label>
+        <select id="pengguna-status"></select>
+      </div>
+      <div class="form-field">
+        <label for="pengguna-kecamatan">Kecamatan</label>
+        <select id="pengguna-kecamatan"></select>
+      </div>
+      <div class="filter-actions">
+        <button type="button" class="btn btn-primary" id="pengguna-apply">Terapkan</button>
+        <button type="button" class="btn btn-ghost" id="pengguna-reset">Reset</button>
+      </div>
+    </div>
+
+    <section class="card">
+      <div class="table-toolbar">
+        <div class="table-toolbar-left">
+          <div class="kpi-mini" id="pengguna-count"></div>
+        </div>
+        <div class="table-toolbar-right">
+          <label class="muted" for="pengguna-pagesize">Baris</label>
+          <select id="pengguna-pagesize" style="min-height:34px;padding:4px 8px;border-radius:8px;border:1px solid var(--line-strong);background:#fff">
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap flush" id="pengguna-table"></div>
+      <div class="pagination" id="pengguna-pagination"></div>
+    </section>
+  </main>
+
+  <!-- Modal tambah akun -->
+  <div class="modal" id="user-create-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-create></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="user-create-title">
+      <div class="modal-head">
+        <div><span class="eyebrow">Akun Baru</span>
+          <h3 id="user-create-title">Tambah Petugas Kecamatan</h3></div>
+        <button type="button" class="icon-btn" data-close-create aria-label="Tutup"></button>
+      </div>
+      <form id="user-create-form" class="form-grid" autocomplete="off">
+        <div class="form-field full">
+          <label for="user-create-nama">Nama lengkap <span class="req">*</span></label>
+          <input type="text" id="user-create-nama" required minlength="3" placeholder="Contoh: Ahmad Fauzi">
+        </div>
+        <div class="form-field">
+          <label for="user-create-username">Username <span class="req">*</span></label>
+          <input type="text" id="user-create-username" required minlength="4" maxlength="40"
+            pattern="[a-z0-9][a-z0-9._\-]{3,39}" placeholder="contoh: petugas.tembilahan">
+          <small class="field-hint">4–40 karakter, huruf kecil, angka, titik, garis bawah, atau strip.</small>
+        </div>
+        <div class="form-field">
+          <label for="user-create-kecamatan">Kecamatan <span class="req">*</span></label>
+          <select id="user-create-kecamatan" required></select>
+        </div>
+        <div class="form-field full">
+          <label for="user-create-password">Password sementara</label>
+          <div class="input-with-button">
+            <input type="password" id="user-create-password" minlength="10" autocomplete="new-password"
+              placeholder="Kosongkan untuk dibuat otomatis">
+            <button type="button" class="input-action" data-toggle-password="user-create-password"
+              aria-label="Tampilkan password"></button>
+          </div>
+          <small class="field-hint">Minimal 10 karakter, mengandung huruf dan angka. Bila dikosongkan,
+            sistem membuat password acak yang hanya ditampilkan sekali.</small>
+        </div>
+        <p class="form-error full" id="user-create-error" role="alert" hidden></p>
+        <div class="modal-actions full">
+          <button type="button" class="btn btn-ghost" data-close-create>Batal</button>
+          <button type="submit" class="btn btn-primary" id="user-create-submit">Buat Akun</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal edit akun -->
+  <div class="modal" id="user-edit-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-edit></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="user-edit-title">
+      <div class="modal-head">
+        <div><span class="eyebrow">Perbarui Akun</span>
+          <h3 id="user-edit-title">Ubah Data Pengguna</h3></div>
+        <button type="button" class="icon-btn" data-close-edit aria-label="Tutup"></button>
+      </div>
+      <form id="user-edit-form" class="form-grid" autocomplete="off">
+        <input type="hidden" id="user-edit-id">
+        <div class="form-field">
+          <label for="user-edit-username">Username</label>
+          <input type="text" id="user-edit-username" disabled>
+        </div>
+        <div class="form-field">
+          <label for="user-edit-role">Peran</label>
+          <input type="text" id="user-edit-role" disabled>
+        </div>
+        <div class="form-field full">
+          <label for="user-edit-nama">Nama lengkap <span class="req">*</span></label>
+          <input type="text" id="user-edit-nama" required minlength="3">
+        </div>
+        <div class="form-field" id="user-edit-kec-wrap">
+          <label for="user-edit-kecamatan">Kecamatan</label>
+          <select id="user-edit-kecamatan"></select>
+        </div>
+        <div class="form-field">
+          <label for="user-edit-status">Status akun</label>
+          <select id="user-edit-status">
+            <option value="AKTIF">Aktif</option>
+            <option value="NONAKTIF">Nonaktif</option>
+          </select>
+        </div>
+        <p class="form-error full" id="user-edit-error" role="alert" hidden></p>
+        <div class="modal-actions full">
+          <button type="button" class="btn btn-ghost" data-close-edit>Batal</button>
+          <button type="submit" class="btn btn-primary" id="user-edit-submit">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal password sementara -->
+  <div class="modal" id="user-password-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-temp></div>
+    <div class="modal-dialog modal-sm" role="dialog" aria-modal="true" aria-labelledby="user-temp-title">
+      <div class="modal-head">
+        <div><span class="eyebrow">Ditampilkan Sekali</span>
+          <h3 id="user-temp-title">Password Sementara</h3></div>
+        <button type="button" class="icon-btn" data-close-temp aria-label="Tutup"></button>
+      </div>
+      <div class="form-grid">
+        <p class="full muted" id="user-temp-username">Akun pengguna</p>
+        <div class="form-field full">
+          <label for="user-temp-password">Salin sebelum menutup</label>
+          <div class="input-with-button">
+            <input type="text" id="user-temp-password" readonly>
+            <button type="button" class="input-action" id="user-temp-copy" aria-label="Salin password"></button>
+          </div>
+          <small class="field-hint">Password ini tidak dapat dilihat lagi. Pengguna wajib menggantinya
+            saat login pertama.</small>
+        </div>
+        <div class="modal-actions full">
+          <button type="button" class="btn btn-primary" data-close-temp>Sudah Disalin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/audio.js"></script>
+  <script src="assets/js/page-common.js"></script>
+  <script src="assets/js/shell.js"></script>
+  <script src="assets/js/pengguna.js"></script>
+</body>
+</html>
